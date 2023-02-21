@@ -1,25 +1,29 @@
-/* This code uses JavaScript to fetch 10 random jokes from the Official Joke API 
-and logs the response to the console.*/
-
-
-//create a new XMLHTTPRequest object
-let request = new XMLHttpRequest();
-
-//specify the type of request (GET) and the URL to fetch
-request.open("GET", "https://official-joke-api.appspot.com/random_ten");
-
-// send the request to the server
-request.send();
-
-// when the request is finished, run this function
-request.onload = ()=> {
-    console.log(request);
-    if (request.status ==200) {
-        //parse the response and log the results to the console
-        console.log(JSON.parse(request.response));
-    }
-    else{
-        //if there was an error, log the status code and status text to the console
-        console.log('error ${request.status} ${request.statusText}')
-    }
+//Function to fetch a random joke from the official-joke-api
+function getJokes(){
+    //use the fetch() method to make a GET request to the joke API
+    fetch('https://official-joke-api.appspot.com/random_joke/')
+        //if the response is successful, parse the JSON data
+        .then(res => res.json())
+        //If parsing is succesful, create a string with the joke setup and punchline
+        .then(joke => {
+            let jokes = `${joke.setup} - ${joke.punchline}`;
+            //Set the text content of the #box element to the joke string
+            document.querySelector('#box').innerHTML = jokes;
+        })
+        //If any error occurs, log the error message to the console
+        .catch(error => console.log(error.message))
 }
+
+/*The code below is to generate 10 random jokes
+
+function getJokes(){
+    fetch('https://official-joke-api.appspot.com/jokes/ten')
+        .then(res => res.json())
+        .then(data => {
+            let jokes = data.map(joke => `${joke.setup} - ${joke.punchline}`).join("<br><br>");
+            document.querySelector('#box').innerHTML = jokes;
+        })
+        .catch(error => console.log(error.message))
+}
+
+*/

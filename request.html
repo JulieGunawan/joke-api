@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <head>
-<script src="./call.js"></script>
-
+    <meta charset=""utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Generate Jokes</title>
+    <script src="./call.js"></script>
+    <link rel="stylesheet" href="./style.css">
 </head>
-<html>
-    <button>Click for Joke</button>
 
-    <span class="left-eye"></span>
-    <span class="right-eye"></span>
+<body>
+<div class="joke-frame">
+    <!-- A button to generate jokes throught getJokes() function in javascript -->
+    <button onclick="getJokes()">Click for Joke</button>
+    <!-- the face div represents the whole smiley face-->
+    <div class="face">
+        <div class="eyes">
+            <div class="left-eye"><span class="iris"></span></div>
+            <div class="right-eye"><span class="iris"></span></div>
+        </div>
+        <div class="mouth"></div>
+    </div>
+    <!--a div that will show the generated jokes-->
+    <div class="box" id="box"></div>
+</div>
+</body>
 </html>
